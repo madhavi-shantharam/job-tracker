@@ -40,7 +40,7 @@ and uses the Claude AI API to analyze resume-to-job-description fit.
 
 1. Clone the repository:
 ```bash
-   git clone https://github.com/YOUR_USERNAME/job-tracker.git
+   git clone https://github.com/madhavi-shantharam/job-tracker.git
    cd job-tracker
 ```
 
