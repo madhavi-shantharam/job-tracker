@@ -88,3 +88,7 @@ src/main/java/com/madhavi/job_tracker/
 ├── dto/           # Data Transfer Objects — API contracts
 └── exception/     # Custom exceptions + error handling
 ```
+
+## Related
+
+Frontend repository: https://github.com/madhavi-shantharam/job-tracker-ui
