@@ -14,9 +14,10 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins(
+                        .allowedOriginPatterns(
                                 "http://localhost:3000",    // local dev
-                                "http://localhost:5173"     // Vite default fallback
+                                "http://localhost:5173",    // Vite default fallback
+                                "https://*.cloudfront.net"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")

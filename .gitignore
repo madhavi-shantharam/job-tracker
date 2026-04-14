@@ -21,3 +21,4 @@ logs/
 
 # Docker volumes
 docker-volumes/
+.env.aws
