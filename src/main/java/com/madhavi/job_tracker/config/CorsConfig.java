@@ -17,10 +17,11 @@ public class CorsConfig {
                         .allowedOriginPatterns(
                                 "http://localhost:3000",    // local dev
                                 "http://localhost:5173",    // Vite default fallback
-                                "https://d22pnc96hmt6mt.cloudfront.net"
+                                "https://*.cloudfront.net"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
+                        .allowCredentials(false)
                         .maxAge(3600);
             }
         };
