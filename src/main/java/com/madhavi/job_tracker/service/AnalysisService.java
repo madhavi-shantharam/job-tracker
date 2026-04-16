@@ -24,13 +24,21 @@ public class AnalysisService {
     private final ObjectMapper objectMapper;
 
     public AnalysisService(@Value("${anthropic.api.key}") String apiKey) {
-        this.anthropic = AnthropicOkHttpClient.builder()
-                .apiKey(apiKey)
-                .build();
+        // In test environment the key is a placeholder — client is mocked in tests
+        if (apiKey != null && !apiKey.startsWith("test-")) {
+            this.anthropic = AnthropicOkHttpClient.builder()
+                    .apiKey(apiKey)
+                    .build();
+        } else {
+            this.anthropic = null; // Will be mocked in tests
+        }
         this.objectMapper = new ObjectMapper();
     }
 
     public AnalyzeResponse analyze(AnalyzeRequest request) {
+        if (anthropic == null) {
+            throw new IllegalStateException("Anthropic client not configured — check API key");
+        }
 
         String prompt = buildPrompt(request.getJobDescription(), request.getResumeText());
 
