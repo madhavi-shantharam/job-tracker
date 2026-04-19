@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -41,6 +42,28 @@ public class GlobalExceptionHandler {
         response.put("message", ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+    // Handles 404s from ResumeNotFoundException
+    @ExceptionHandler(ResumeNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleResumeNotFound(
+            ResumeNotFoundException ex) {
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+    // Handles 400s from ResumeLimitExceededException
+    @ExceptionHandler(ResumeLimitExceededException.class)
+    public ResponseEntity<Map<String, Object>> handleResumeLimitExceeded(
+            ResumeLimitExceededException ex) {
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
     // Catch-all for unexpected errors
